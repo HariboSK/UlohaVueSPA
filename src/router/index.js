@@ -36,10 +36,7 @@ const router = createRouter({
 })
 
 router.afterEach((to, from) => {
-  console.log('Stránka sa zmenila:', {
-    from: from.fullPath,
-    to: to.fullPath
-  })
+  console.log(`Stránka sa zmenila: ${from.fullPath} -> ${to.fullPath}`)
 })
 
 export default router
