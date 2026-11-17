@@ -19,18 +19,19 @@ const destination = computed(() => {
 
 <template> 
     <button @click="$router.back()" class="btn-back">Späť</button>
-    <div v-if ="destination" class="destination-details">
-        <div>
-            <h1>{{destination.name }}</h1>
-            <p>{{ destination.description}}</p>
+    <template v-if="destination">
+        <div class="destination-details">
+            <div>
+                <h1>{{ destination.name }}</h1>
+                <p>{{ destination.description }}</p>
+            </div>
+            <div>
+                <img :src="'/images/' + destination.image" :alt="destination.name">
+            </div>
         </div>
-        <div>
-            <img :src="'/images/' + destination.image" :alt="destination.name">
-        </div>
-    </div>
 
-    <div v-if="destination.experiences" class="experiences">
-        <h2>Zážitky v {{ destination.name }}</h2>
+        <div v-if="destination.experiences" class="experiences">
+            <h2>Zážitky v {{ destination.name }}</h2>
             <div class="cards">
                 <ExperienceCard
                     v-for="experience in destination.experiences"
@@ -40,9 +41,15 @@ const destination = computed(() => {
                 />
             </div>
         </div>
+    </template>
 
-    <p v-else>Destinácia s identifikátorom (slug) "{{ props.slug }}" nebola nájdená.</p>
-
+    <div v-else class="not-found">
+        <p class="not-found__code">
+            Destinácia s identifikátorom (slug)
+            <span class="not-found__slug">"{{ props.slug }}"</span>
+            nebola nájdená.
+        </p>
+    </div>
 
     <RouterView :key="$route.fullPath"/> <!-- Zobrazenie komponentu ExperiencesView pre danú destináciu -->
 </template>

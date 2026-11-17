@@ -50,9 +50,10 @@ const previousStory = () => {
 </script>
 <template>
     <div class="home">
+        <button @click="$router.back()" class="btn-back">Späť</button>
+
         <h1>Nahrate zážitky z výletov</h1>
         <section class="stories">
-            <h2>Objav zážitky</h2>
 
             <div class="story-list">
                 <button
@@ -91,7 +92,6 @@ const previousStory = () => {
             </article>
         </div>
 
-        <button @click="$router.back()" class="btn-back">Späť</button>
         <h1>Všetky destinácie</h1>
         <div class="destinations">
             <div v-for="destination in destinations">
